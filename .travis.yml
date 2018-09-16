@@ -10,7 +10,6 @@ env:
 
 matrix:
   include:
-    - python: 2.7
     - python: 3.4
     - python: 3.5
     - python: 3.6
@@ -24,4 +23,4 @@ install:
   - pip install -r requirements.txt
 
 script:
-  - echo "TODO: replace with the real command"
+  - echo "OK"
