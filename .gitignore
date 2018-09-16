@@ -130,3 +130,6 @@ pip-selfcheck.json
 
 
 # End of https://www.gitignore.io/api/python
+#
+# Remvoe version file from setuptools_scm
+sqlflow/version.py
