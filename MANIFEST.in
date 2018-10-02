@@ -1,0 +1,4 @@
+include LICENSE
+exclude .travis.yml
+exclude .gitignore
+
