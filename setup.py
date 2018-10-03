@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# License GPL-3.0 or later (http://www.gnu.org/licenses/gpl).
 
 # Always prefer setuptools over distutils
 from setuptools import setup, find_packages
