@@ -2,7 +2,5 @@
 
 
 class SqlFlowException(Exception):
-    """
-    Generic class for exception
-    """
+    """Base class for all exceptions raised by SqlFlow"""
     pass
