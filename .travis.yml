@@ -31,6 +31,7 @@ install:
 before_script:
   - psql -c "CREATE USER myflow WITH PASSWORD 'myflow';" -U postgres
   - psql -c 'CREATE DATABASE myflow WITH OWNER myflow;' -U postgres
+  - ci/install-sqlflow-pg.sh
 
 script:
   - echo "OK"
