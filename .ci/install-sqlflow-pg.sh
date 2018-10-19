@@ -20,3 +20,5 @@ echo "Install SQLFlow on PostgreSQL"
 cd pg-extension-master
 psql -v "ON_ERROR_STOP=1" -f ./sql/sqlflow-structure.sql -U postgres myflow
 psql -v "ON_ERROR_STOP=1" -f ./sql/sqlflow-instance.sql -U postgres myflow
+
+psql -c "GRANT sqlflow TO myflow;" -U postgres
