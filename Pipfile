@@ -9,6 +9,7 @@ name = "pypi"
 [dev-packages]
 pytest = "*"
 sqlflow = {editable = true, path = "."}
+pre-commit = "*"
 
 [requires]
 python_version = "3.5"
