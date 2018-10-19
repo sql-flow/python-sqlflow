@@ -22,5 +22,3 @@ def test_connection_schema(db):
     """Test with schema is available on DB"""
     wkf = WorkFlow(cursor=db.cursor())
     wkf._schema_exists()
-
-
