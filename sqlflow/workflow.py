@@ -37,3 +37,22 @@ class WorkFlow:
             raise SqlFlowException(
                 'Schema "%s" not found in the database!' % (self.db_schema,)
             )
+
+class Version:
+    pass
+
+
+class Activity:
+    pass
+
+
+class Transition:
+    pass
+
+
+class Task:
+    pass
+
+
+class Condition:
+    pass
