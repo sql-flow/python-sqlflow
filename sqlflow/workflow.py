@@ -1,6 +1,7 @@
 # See LICENSE file at root repository
 
 import psycopg2
+from psycopg2 import sql
 from .exceptions import SqlFlowException
 
 
@@ -42,7 +43,9 @@ class WorkFlow:
         """
         Check if workflow exists in the database
         """
-        query = """SELECT id, title FROM sqlflow.workflow WHERE uref=%s"""
+        query = sql.SQL("""SELECT id, title FROM {}.workflow
+                        WHERE uref=%s"""
+        ).format(sql.Identifier(self.db_schema))
         self.cr.execute(query, (name,))
         res = self.cr.fetchone()
         if not res:
