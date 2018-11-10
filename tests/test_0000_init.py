@@ -8,7 +8,6 @@ import os
 
 def test_no_connection():
     """Call workflow with no connection"""
-
     with pytest.raises(SqlFlowException):
         WorkFlow()
 
@@ -22,3 +21,9 @@ def test_connection_schema(db):
     """Test with schema is available on DB"""
     wkf = WorkFlow(cursor=db.cursor())
     wkf._schema_exists()
+
+def test_missing_workflow(db):
+    """Test if workflow is available on DB"""
+    wkf = WorkFlow(cursor=db.cursor())
+    with pytest.raises(SqlFlowException):
+        wkf._check_workflow('first-workflow')

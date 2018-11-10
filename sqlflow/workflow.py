@@ -18,7 +18,7 @@ class WorkFlow:
         print(cursor)
 
         if name is None:
-            name = 'SqlFlow '
+            name = 'SqlFlow'
 
         self.cr = cursor
         self._schema_exists()
@@ -37,6 +37,20 @@ class WorkFlow:
             raise SqlFlowException(
                 'Schema "%s" not found in the database!' % (self.db_schema,)
             )
+
+    def _check_workflow(self, name=None):
+        """
+        Check if workflow exists in the database
+        """
+        query = """SELECT id, title FROM sqlflow.workflow WHERE uref=%s"""
+        self.cr.execute(query, (name,))
+        res = self.cr.fetchone()
+        if not res:
+            raise SqlFlowException(
+                'Workflow "%s" not found in the database!' % (name,)
+            )
+        return (res[0], res[1])
+
 
 class Version:
     pass
