@@ -27,3 +27,18 @@ def test_missing_workflow(db):
     wkf = WorkFlow(cursor=db.cursor())
     with pytest.raises(SqlFlowException):
         wkf._check_workflow('first-workflow')
+
+def test_add_workflow(db):
+    """Test adding a workflow"""
+    wkf = WorkFlow(cursor=db.cursor())
+    res = wkf.add_workflow('aaaa', 'Workflow A', '')
+    wkf._check_workflow('aaaa')
+    assert res[0] > 0
+    assert res[1] == 'aaaa'
+
+def test_duplicate_workflow(db):
+    """Test adding a workflow"""
+    wkf = WorkFlow(cursor=db.cursor())
+    wkf._check_workflow('aaaa')
+    with pytest.raises(SqlFlowException):
+        wkf.add_workflow('aaaa', 'Workflow A', '')

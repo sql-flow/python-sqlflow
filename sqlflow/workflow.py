@@ -54,6 +54,27 @@ class WorkFlow:
             )
         return (res[0], res[1])
 
+    def add_workflow(
+            self, name=None, title='',
+            related=None, ftype='row', version=None):
+        """
+        This class add a new workflow
+        :return: Tuple with id, Unique ref and title
+        :rtype: tuple
+        """
+        query = sql.SQL("""
+            INSERT INTO {}.workflow (uref, title, rel_table, flow_type)
+            VALUES (%s, %s, %s, %s) RETURNING id;"""
+        ).format(sql.Identifier(self.db_schema))
+        try:
+            self.cr.execute(query, (name, title, related, ftype))
+        except psycopg2.IntegrityError:
+            raise SqlFlowException(
+                'Workflow "%s" already exists in the database!' % (name,)
+            )
+        res_id = self.cr.fetchone()[0]
+        return (res_id, name, title)
+
 
 class Version:
     pass
