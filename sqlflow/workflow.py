@@ -2,6 +2,7 @@
 
 import psycopg2
 from psycopg2 import sql
+import uuid
 from .exceptions import SqlFlowException
 
 
@@ -62,6 +63,8 @@ class WorkFlow:
         :return: Tuple with id, Unique ref and title
         :rtype: tuple
         """
+        if not name:
+            name = str(uuid.uuid4())
         query = sql.SQL("""
             INSERT INTO {}.workflow (uref, title, rel_table, flow_type)
             VALUES (%s, %s, %s, %s) RETURNING id;"""
